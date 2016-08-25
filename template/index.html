@@ -36,7 +36,7 @@
       <div class="one-half column" style="margin-top: 16%">
         <h4>Sample node.js Application for Uncorked Studios</h4>
         <p>Hello, <a href="https://uncorkedstudios.com/">Uncorked Studios</a>!</p>
-          <input class="button-primary" type="button" value="new quip" onclick="quip()">
+          <input class="button-primary" type="button" value="fresh quip" onclick="quip()">
           <p id="quip"></p>
           <script>
             function quip() {
@@ -47,9 +47,10 @@
             };
             quip();
           </script>
+          <p><a href="https://github.com/cratermoon/node_cal">Code for this site/application</a></p> 
       </div>
       <div class="one-half column" style="margin-top: 16%">
-        <p id="image"></p>
+        <div id="image"></div>
           <script>
             function flickrimg() {
               var xmlhttp = new XMLHttpRequest();
@@ -58,7 +59,8 @@
               imgjson = JSON.parse(xmlhttp.responseText);
              //https://farm{farm-id}.staticflickr.com/{server-id}/{id}_{secret}_[mstzb].jpg
              imgurl = "https://farm"+imgjson.farm+".staticflickr.com/"+imgjson.server+"/"+imgjson.id+"_"+imgjson.secret+"_z.jpg"
-             document.getElementById("image").innerHTML='<img src="'+imgurl+'">';
+             document.getElementById("image").innerHTML='<img style="box-shadow: 0.5em 0.5em 1em #16161d;" src="'+imgurl+'">';
+             setTimeout(flickrimg, 20000);
             };
             flickrimg();
           </script>
