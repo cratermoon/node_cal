@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title>node.js example for Uncorked Studios</title>
+  <meta name="description" content="">
+  <meta name="author" content="Steven E. Newton">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/skeleton.css">
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/ico" href="images/favicon.ico">
+
+</head>
+<body>
+
+  <!-- Primary Page Layout
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <div class="container">
+    <div class="row">
+      <div class="one-half column" style="margin-top: 16%">
+        <h4>Sample node.js Application for Uncorked Studios</h4>
+        <p>Hello, <a href="https://uncorkedstudios.com/">Uncorked Studios</a>!</p>
+      </div>
+      <div class="row">
+        <div class="eleven columns">
+          <input class="button-primary" type="button" value="new quip" onclick="quip()">
+          <p id="quip"></p>
+          <script>
+            function quip() {
+              var xmlhttp = new XMLHttpRequest();
+              xmlhttp.open("GET", "/qotd", false);
+              xmlhttp.send();
+              document.getElementById("quip").innerHTML= xmlhttp.responseText;
+            };
+            quip();
+          </script>
+        </div>
+      <div class="row">
+    </div>
+  </div>
+
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+</html>
