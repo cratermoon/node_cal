@@ -36,9 +36,6 @@
       <div class="one-half column" style="margin-top: 16%">
         <h4>Sample node.js Application for Uncorked Studios</h4>
         <p>Hello, <a href="https://uncorkedstudios.com/">Uncorked Studios</a>!</p>
-      </div>
-      <div class="row">
-        <div class="eleven columns">
           <input class="button-primary" type="button" value="new quip" onclick="quip()">
           <p id="quip"></p>
           <script>
@@ -50,8 +47,22 @@
             };
             quip();
           </script>
-        </div>
-      <div class="row">
+      </div>
+      <div class="one-half column" style="margin-top: 16%">
+        <p id="image"></p>
+          <script>
+            function flickrimg() {
+              var xmlhttp = new XMLHttpRequest();
+              xmlhttp.open("GET", "/qotd/flickr", false);
+              xmlhttp.send();
+              imgjson = JSON.parse(xmlhttp.responseText);
+             //https://farm{farm-id}.staticflickr.com/{server-id}/{id}_{secret}_[mstzb].jpg
+             imgurl = "https://farm"+imgjson.farm+".staticflickr.com/"+imgjson.server+"/"+imgjson.id+"_"+imgjson.secret+"_z.jpg"
+             document.getElementById("image").innerHTML='<img src="'+imgurl+'">';
+            };
+            flickrimg();
+          </script>
+      </div>
     </div>
   </div>
 
