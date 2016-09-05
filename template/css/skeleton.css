@@ -417,3 +417,12 @@ there.
 
 /* Larger than Desktop HD */
 @media (min-width: 1200px) {}
+
+/* Custom */
+
+.u-max-full-width .flickr-wrapper {
+  box-shadow: 0.5em 0.5em 1em #16161d;
+  display: inline-block; }
+
+.flickr-title {
+  font-style: italic; }

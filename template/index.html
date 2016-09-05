@@ -27,6 +27,11 @@
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <link rel="icon" type="image/ico" href="images/favicon.ico">
 
+  <!-- Javascript things
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <script type="text/javascript" src="js/sutils.js"> </script>
+
+
 </head>
 <body>
 
@@ -37,61 +42,28 @@
       <div class="one-half column" style="margin-top: 16%">
         <h4>Sample node.js Application for Uncorked Studios</h4>
         <p>Hello, <a href="https://uncorkedstudios.com/">Uncorked Studios</a>!</p>
-          <input class="button-primary" type="button" value="fresh quip" onclick="quip()">
           <p id="quip"></p>
           <script>
-            function quip() {
-              var xmlhttp = new XMLHttpRequest();
-              xmlhttp.open("GET", "/qotd", true);
-              xmlhttp.onload = function(e) {
-                document.getElementById("quip").innerHTML= xmlhttp.responseText;
-              }
-              xmlhttp.send();
-            };
             quip();
           </script>
+          <input class="button-primary" type="button" value="fresh quip" onclick="quip()">
           <p><a href="https://github.com/cratermoon/node_cal">Code for this site/application</a></p> 
       </div>
       <div class="one-half column" style="margin-top: 16%">
         <div id="image"></div>
           <script>
-            function flickrimg() {
-              var xmlhttp = new XMLHttpRequest();
-              xmlhttp.open("GET", "/qotd/flickr", true);
-              xmlhttp.timeout = 2000;
-              xmlhttp.onload = function(e) {
-                if(xmlhttp.readyState === 4 && xmlhttp.status === 200) {
-                  imgjson = JSON.parse(xmlhttp.responseText);
-                  //https://farm{farm-id}.staticflickr.com/{server-id}/{id}_{secret}_[mstzb].jpg
-                  var imgElt = document.getElementById("image");
-                  var width = imgElt.offsetWidth
-                  var imgUrlExt = ""; // defaults to the medium, 500 on longest side
-                  if (width < 480) {
-                   imgUrlExt = "_n";
-                  } else if (width < 800) {
-                   imgUrlExt = "_z";
-                  } else if (width < 1600) {
-                   imgUrlExt = "_b";
-                  }
-                  imgurl = "https://farm"+imgjson.farm+".staticflickr.com/"+imgjson.server+"/"+imgjson.id+"_"+imgjson.secret+imgUrlExt+".jpg"
-                  imgElt.innerHTML='<figure><img class="flickr-wrapper" src="'+imgurl+'" style="width: '+width+'px; height=auto"><figcaption class="flickr-title">'+imgjson.title+'</figcaption></figure>';
-                } else {
-                  console.error(xhr.statusText);
-                }
-              };
-              xmlhttp.onerror = function (e) {
-                console.error(xmlhttp.statusText);
-              };
-              xmlhttp.ontimeout = function (e) {
-                console.error(xmlhttp.statusText);
-              };
-              xmlhttp.send(null);
-              setTimeout(flickrimg, 20000);
-            };
             flickrimg();
           </script>
       </div>
     </div>
+      <div class="row">
+        <div class="eight columns"><hr></div>
+        <div class="four columns">
+          <footer>
+            <p class="u-pull-right">Designed with Skeleton. <a href="http://getskeleton.com/">Get Skeleton</a></p>
+          </footer>
+        </div>
+      </div>
   </div>
 
 <!-- End Document
