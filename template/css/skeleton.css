@@ -424,5 +424,21 @@ there.
   box-shadow: 0.5em 0.5em 1em #16161d;
   display: inline-block; }
 
+
+.image-wrapper {
+  position: relative;
+}
+
+
+.image-overlay {
+  position: absolute;
+  top: 1em;
+  left: 2em;
+  color: #FAFAFA;
+  background: #16161D;
+  padding: .5em;
+  font-size: 20%;
+}
+
 .flickr-title {
   font-style: italic; }

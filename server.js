@@ -9,6 +9,7 @@ quips.loadQuips();
 const renderer = require('./lib/render');
 
 const flickrr = require('./lib/flickrr');
+const sc = require('./lib/safecast/api');
 
 http.createServer(function(request, response) {
   request.on('error', function(err) {
@@ -31,6 +32,24 @@ http.createServer(function(request, response) {
       response.end();
     } else if (path == "/flickr") {
       flickrr.flickrl(function(result) {
+        response.setHeader('Content-Type', 'application/json');
+        response.write(JSON.stringify(result));
+        response.end();
+      });
+    } else if (path == "/flickr/locate") {
+      var photoId = parsedUrl.query.id;
+      console.log("locating "+photoId);
+      flickrr.geoLocatePhoto(photoId, function(result) {
+        response.setHeader('Content-Type', 'application/json');
+        response.write(JSON.stringify(result));
+        response.end();
+      });
+    } else if (path == "/sc/measurement") {
+      var latitude = parsedUrl.query.lat;
+      var longitude = parsedUrl.query.lon;
+      sc.getNearestMeasurement(latitude, longitude, 1000, function(result) {
+        console.log("lat="+latitude+", lon="+longitude+"; measurement: "+JSON.stringify(result));
+        console.log(result);
         response.setHeader('Content-Type', 'application/json');
         response.write(JSON.stringify(result));
         response.end();
