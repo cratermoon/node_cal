@@ -39,6 +39,8 @@ function getNearbyMeasurement() {
     if(xhr.readyState === 4 && xhr.status === 200) {
       window.flickrimg_measurement = JSON.parse(xhr.responseText);
       if (window.flickrimg_measurement.value != undefined) {
+        var imgElt = document.getElementById("flickr-image");
+        imgElt.style.outline = "yellow inset thin";
         var text = window.flickrimg_measurement.value + " "+window.flickrimg_measurement.unit + " on "+window.flickrimg_measurement.ts;
         measureElt.innerText=text;
         measureElt.style.display="inline";
@@ -85,7 +87,7 @@ function flickrimg() {
     }
     var imgDate = new Date(Date.parse(imgjson.datetaken)).toDateString();
     imgurl = "https://farm"+imgjson.farm+".staticflickr.com/"+imgjson.server+"/"+imgjson.id+"_"+imgjson.secret+imgUrlExt+".jpg"
-    imgElt.innerHTML='<a href="'+imgWebUrl+'"><img class="flickr-wrapper u-max-full-width" src="'+imgurl+'" style="width: '+width+'px; height=auto"></a><figcaption class="flickr-title">'+imgjson.title+'&mdash;'+imgDate+'</figcaption>';
+    imgElt.innerHTML='<a href="'+imgWebUrl+'"><img class="flickr-wrapper" id="flickr-image" src="'+imgurl+'" style="width: '+width+'px; height=auto"></a><figcaption class="flickr-title">'+imgjson.title+'&mdash;'+imgDate+'</figcaption>';
       locateAndTag(imgjson.id);
     } else {
       console.error(xmlhttp.statusText);

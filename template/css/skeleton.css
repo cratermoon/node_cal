@@ -422,13 +422,11 @@ there.
 
 .u-max-full-width .flickr-wrapper {
   box-shadow: 0.5em 0.5em 1em #16161d;
-  position: relative;
   display: inline-block; }
 
 
 .image-wrapper {
-  position: relative;
-}
+  position: relative; }
 
 
 .image-overlay {
