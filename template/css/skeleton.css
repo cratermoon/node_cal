@@ -422,6 +422,7 @@ there.
 
 .u-max-full-width .flickr-wrapper {
   box-shadow: 0.5em 0.5em 1em #16161d;
+  position: relative;
   display: inline-block; }
 
 
@@ -433,11 +434,15 @@ there.
 .image-overlay {
   position: absolute;
   top: 1em;
-  left: 2em;
+  right: 5em;
   color: #FAFAFA;
-  background: #16161D;
+  background: red;
   padding: .5em;
-  font-size: 20%;
+  opacity: 0.0;
+}
+
+.image-wrapper:hover .image-overlay {
+  opacity: 0.6;
 }
 
 .flickr-title {

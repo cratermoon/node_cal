@@ -7,14 +7,14 @@ function quip() {
   xmlhttp.send();
 };
 
-function imageLocate(photoid) {
+function imageLocate(photoid, callback) {
   var xhr = new XMLHttpRequest();
   xhr.open("GET", "/qotd/flickr/locate?id="+photoid, true);
-  xhr.timeout = 2000;
+  xhr.timeout = 3000;
   xhr.onload = function(e) {
     if(xhr.readyState === 4 && xhr.status === 200) {
       window.flickrimg_geolocation = JSON.parse(xhr.responseText);
-      getNearbyMeasurement(window.flickrimg_geolocation.latitude, flickrimg_geolocation.longitude);
+      callback();
     }
   }
   xhr.onerror = function (e) {
@@ -26,18 +26,20 @@ function imageLocate(photoid) {
   xhr.send(null);
 }
 
-function getNearbyMeasurement(latitude, longitude) {
+function getNearbyMeasurement() {
   var xhr = new XMLHttpRequest();
   window.flickrimg_measurement = {};
   var measureElt = document.getElementById("scmeasurement");
   measureElt.style.display="none";
+  var latitude = window.flickrimg_geolocation.latitude;
+  var longitude = flickrimg_geolocation.longitude;
   xhr.open("GET", "/qotd/sc/measurement?lat="+latitude+"&lon="+longitude, true);
   xhr.timeout = 2000;
   xhr.onload = function(e) {
     if(xhr.readyState === 4 && xhr.status === 200) {
       window.flickrimg_measurement = JSON.parse(xhr.responseText);
       if (window.flickrimg_measurement.value != undefined) {
-        var text = window.flickrimg_measurement.value + " "+window.flickrimg_measurement.unit
+        var text = window.flickrimg_measurement.value + " "+window.flickrimg_measurement.unit + " on "+window.flickrimg_measurement.ts;
         measureElt.innerText=text;
         measureElt.style.display="inline";
         console.log(window.flickrimg_measurement);
@@ -51,6 +53,11 @@ function getNearbyMeasurement(latitude, longitude) {
     console.error("timed out: "+xhr.statusText);
   };
   xhr.send(null);
+}
+
+
+function locateAndTag(photoId) {
+  imageLocate(photoId, getNearbyMeasurement);
 }
 
 function flickrimg() {
@@ -78,8 +85,8 @@ function flickrimg() {
     }
     var imgDate = new Date(Date.parse(imgjson.datetaken)).toDateString();
     imgurl = "https://farm"+imgjson.farm+".staticflickr.com/"+imgjson.server+"/"+imgjson.id+"_"+imgjson.secret+imgUrlExt+".jpg"
-    imgElt.innerHTML='<figure><a href="'+imgWebUrl+'"><img class="flickr-wrapper u-max-full-width" src="'+imgurl+'" style="width: '+width+'px; height=auto"></a><figcaption class="flickr-title">'+imgjson.title+'&mdash;'+imgDate+'</figcaption></figure>';
-      imageLocate(imgjson.id);
+    imgElt.innerHTML='<a href="'+imgWebUrl+'"><img class="flickr-wrapper u-max-full-width" src="'+imgurl+'" style="width: '+width+'px; height=auto"></a><figcaption class="flickr-title">'+imgjson.title+'&mdash;'+imgDate+'</figcaption>';
+      locateAndTag(imgjson.id);
     } else {
       console.error(xmlhttp.statusText);
     }
