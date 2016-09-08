@@ -33,11 +33,10 @@ setTimeout(function() {
     describe('#geoLocatePhoto', function() {
       this.slow(600);
       it('should return the lat/lon for a photo', function(done) {
-        flickrr.geoLocatePhoto(24183858019, function(result) {
-          assert.equal(result.photo.id, 24183858019, "wrong id");
-          assert.ok(result.photo.location, "no location");
-          assert.equal(result.photo.location.latitude, 45.467473, "wrong latitude");
-          assert.equal(result.photo.location.longitude, -122.715246, "wrong longitude");
+        flickrr.geoLocatePhoto(3577208760, function(result) {
+          assert.ok(result, "nothing returned");
+          assert.equal(result.latitude, 35.202925, "wrong latitude");
+          assert.equal(result.longitude, -111.664685, "wrong longitude");
           done();
         });
       });
