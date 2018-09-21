@@ -63,4 +63,4 @@ http.createServer(function(request, response) {
     response.statusCode = 404;
     response.end();
   }
-}).listen(8090);
+}).listen(8090, function () { console.log("Server started")});
