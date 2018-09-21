@@ -1,3 +1,5 @@
+#!/usr/bin/env nodejs
+
 const http = require('http');
 const fs = require ('fs');
 const urlmodule = require('url');
