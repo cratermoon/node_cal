@@ -9,7 +9,10 @@ requires node.js, and flickrapi library
 
 ## Usage
 
-./server.js
+    node /server.js
+or
+
+    node ./server.js
 
 ## Credits
 
@@ -18,3 +21,4 @@ Steven E. Newton
 ## License
 
 The MIT License (MIT)
+
