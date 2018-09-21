@@ -4,12 +4,12 @@ Simple node.js project for future employers
 
 ## Installation
 
-requires node.js
+requires node.js, and flickrapi library
 
 
 ## Usage
 
-node server.js
+./server.js
 
 ## Credits
 
