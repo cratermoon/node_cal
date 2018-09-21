@@ -70,7 +70,7 @@ function flickrimg() {
   if(xmlhttp.readyState === 4 && xmlhttp.status === 200) {
     imgjson = JSON.parse(xmlhttp.responseText);
     imgWebUrl = "https://www.flickr.com/photos/"+imgjson.owner+"/"+imgjson.id;
-    //https://farm{farm-id}.staticflickr.com/{server-id}/{id}_{secret}_[mstzb].jpg
+    // format of this url is https://farm{farm-id}.staticflickr.com/{server-id}/{id}_{secret}_[mstzb].jpg
     var imgElt = document.getElementById("image");
     var width = imgElt.offsetWidth
     var imgUrlExt = ""; // defaults to the medium, 500 on longest side
