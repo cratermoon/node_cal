@@ -1,6 +1,10 @@
+function mypath() {
+	return location.pathname.replace("/index.html", "");
+}
+
 function quip() {
   var xmlhttp = new XMLHttpRequest();
-  xmlhttp.open("GET", "/", true);
+  xmlhttp.open("GET", mypath() + "/", true);
   xmlhttp.onload = function(e) {
     document.getElementById("quip").innerHTML= xmlhttp.responseText;
   }
@@ -9,7 +13,7 @@ function quip() {
 
 function imageLocate(photoid, callback) {
   var xhr = new XMLHttpRequest();
-  xhr.open("GET", "/flickr/locate?id="+photoid, true);
+  xhr.open("GET", mypath() + "/flickr/locate?id="+photoid, true);
   xhr.timeout = 3000;
   xhr.onload = function(e) {
     if(xhr.readyState === 4 && xhr.status === 200) {
@@ -35,7 +39,7 @@ function getNearbyMeasurement() {
   warningElt.style.display="none";
   var latitude = window.flickrimg_geolocation.latitude;
   var longitude = flickrimg_geolocation.longitude;
-  xhr.open("GET", "/sc/measurement?lat="+latitude+"&lon="+longitude, true);
+  xhr.open("GET", mypath() + "/sc/measurement?lat="+latitude+"&lon="+longitude, true);
   xhr.timeout = 2000;
   xhr.onload = function(e) {
     if(xhr.readyState === 4 && xhr.status === 200) {
@@ -74,7 +78,7 @@ var refreshTimeoutID;
 function flickrimg() {
   clearTimeout(refreshTimeoutID);
   var xmlhttp = new XMLHttpRequest();
-  xmlhttp.open("GET", "/flickr", true);
+  xmlhttp.open("GET", mypath() + "/flickr", true);
   xmlhttp.timeout = 2000;
   xmlhttp.onload = function(e) {
   if(xmlhttp.readyState === 4 && xmlhttp.status === 200) {
