@@ -46,6 +46,15 @@ http.createServer(function(request, response) {
         response.write(JSON.stringify(result));
         response.end();
       });
+    } else if (path == "/flickr/setuser") {
+	    var username = parsedUrl.query.username;
+	    console.log("Changing username to " + username);
+	    flickrr.setUser(username);
+      	flickrr.flickrl(function(result) {
+        response.setHeader('Content-Type', 'application/json');
+        response.write(JSON.stringify(result));
+        response.end();
+      });
     } else if (path == "/sc/measurement") {
       var latitude = parsedUrl.query.lat;
       var longitude = parsedUrl.query.lon;

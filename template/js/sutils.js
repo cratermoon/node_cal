@@ -2,6 +2,22 @@ function mypath() {
 	return location.pathname.replace("/index.html", "");
 }
 
+function setUser() {
+  var username = document.getElementById("flickr-username").value
+  console.log("Flickr username set to "+username);
+  //document.getElementById("user-setting").style.visibility="hidden";
+  var xhr = new XMLHttpRequest();
+  xhr.open("GET", mypath() + "/flickr/setuser?username="+username, true);
+  xhr.onload = function(e) {
+    if(xhr.readyState === 4 && xhr.status === 200) {
+      console.log(xhr.responseText);
+      reloadImage(JSON.parse(xhr.responseText));
+      document.getElementById("image-wrapper-div").style.visibility = "visible";
+    }
+  }
+  xhr.send();
+};
+
 function quip() {
   var xmlhttp = new XMLHttpRequest();
   xmlhttp.open("GET", mypath() + "/", true);
@@ -34,9 +50,9 @@ function getNearbyMeasurement() {
   var xhr = new XMLHttpRequest();
   window.flickrimg_measurement = {};
   var measureElt = document.getElementById("scmeasurement");
-  measureElt.style.display="none";
+  measureElt.style.visibility="hidden";
   var warningElt = document.getElementById("radiation-warning");
-  warningElt.style.display="none";
+  warningElt.style.visibility="hidden";
   var latitude = window.flickrimg_geolocation.latitude;
   var longitude = flickrimg_geolocation.longitude;
   xhr.open("GET", mypath() + "/sc/measurement?lat="+latitude+"&lon="+longitude, true);
@@ -53,8 +69,8 @@ function getNearbyMeasurement() {
         var measurementDate = new Date(Date.parse(window.flickrimg_measurement.ts)).toDateString();
         var text = window.flickrimg_measurement.value + " "+window.flickrimg_measurement.unit + " on "+measurementDate;
         measureElt.innerText=text;
-        measureElt.style.display="inline";
-  	    warningElt.style.display="inline";
+        measureElt.style.visibility="visible";
+  	    warningElt.style.visibility="visible";
         console.log(window.flickrimg_measurement);
       }
     }
@@ -75,14 +91,7 @@ function locateAndTag(photoId) {
 
 var refreshTimeoutID;
 
-function flickrimg() {
-  clearTimeout(refreshTimeoutID);
-  var xmlhttp = new XMLHttpRequest();
-  xmlhttp.open("GET", mypath() + "/flickr", true);
-  xmlhttp.timeout = 2000;
-  xmlhttp.onload = function(e) {
-  if(xmlhttp.readyState === 4 && xmlhttp.status === 200) {
-    imgjson = JSON.parse(xmlhttp.responseText);
+function reloadImage(imgjson) {
     imgWebUrl = "https://www.flickr.com/photos/"+imgjson.owner+"/"+imgjson.id;
     // format of this url is https://farm{farm-id}.staticflickr.com/{server-id}/{id}_{secret}_[mstzb].jpg
     var imgElt = document.getElementById("image");
@@ -102,7 +111,18 @@ function flickrimg() {
     var imgDate = new Date(Date.parse(imgjson.datetaken)).toDateString();
     imgurl = "https://farm"+imgjson.farm+".staticflickr.com/"+imgjson.server+"/"+imgjson.id+"_"+imgjson.secret+imgUrlExt+".jpg"
     imgElt.innerHTML='<a href="'+imgWebUrl+'"><img class="flickr-wrapper" id="flickr-image" src="'+imgurl+'" style="width: '+width+'px; height=auto"></a><figcaption class="flickr-title">'+imgjson.title+'&mdash;'+imgDate+'</figcaption>';
-      locateAndTag(imgjson.id);
+    locateAndTag(imgjson.id);
+    refreshTimeoutID = setTimeout(flickrimg, 20000);
+}
+
+function flickrimg() {
+  clearTimeout(refreshTimeoutID);
+  var xmlhttp = new XMLHttpRequest();
+  xmlhttp.open("GET", mypath() + "/flickr", true);
+  xmlhttp.timeout = 2000;
+  xmlhttp.onload = function(e) {
+  if(xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+    reloadImage(JSON.parse(xmlhttp.responseText));
     } else {
       console.error(xmlhttp.statusText);
     }
@@ -114,5 +134,4 @@ function flickrimg() {
     console.error(xmlhttp.statusText);
   };
   xmlhttp.send(null);
-  refreshTimeoutID = setTimeout(flickrimg, 20000);
 };
