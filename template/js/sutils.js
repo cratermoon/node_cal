@@ -1,6 +1,6 @@
 function quip() {
   var xmlhttp = new XMLHttpRequest();
-  xmlhttp.open("GET", "/qotd", true);
+  xmlhttp.open("GET", "/", true);
   xmlhttp.onload = function(e) {
     document.getElementById("quip").innerHTML= xmlhttp.responseText;
   }
@@ -9,7 +9,7 @@ function quip() {
 
 function imageLocate(photoid, callback) {
   var xhr = new XMLHttpRequest();
-  xhr.open("GET", "/qotd/flickr/locate?id="+photoid, true);
+  xhr.open("GET", "/flickr/locate?id="+photoid, true);
   xhr.timeout = 3000;
   xhr.onload = function(e) {
     if(xhr.readyState === 4 && xhr.status === 200) {
@@ -31,9 +31,11 @@ function getNearbyMeasurement() {
   window.flickrimg_measurement = {};
   var measureElt = document.getElementById("scmeasurement");
   measureElt.style.display="none";
+  var warningElt = document.getElementById("radiation-warning");
+  warningElt.style.display="none";
   var latitude = window.flickrimg_geolocation.latitude;
   var longitude = flickrimg_geolocation.longitude;
-  xhr.open("GET", "/qotd/sc/measurement?lat="+latitude+"&lon="+longitude, true);
+  xhr.open("GET", "/sc/measurement?lat="+latitude+"&lon="+longitude, true);
   xhr.timeout = 2000;
   xhr.onload = function(e) {
     if(xhr.readyState === 4 && xhr.status === 200) {
@@ -41,9 +43,14 @@ function getNearbyMeasurement() {
       if (window.flickrimg_measurement.value != undefined) {
         var imgElt = document.getElementById("flickr-image");
         imgElt.style.outline = "yellow inset thin";
-        var text = window.flickrimg_measurement.value + " "+window.flickrimg_measurement.unit + " on "+window.flickrimg_measurement.ts;
+        if (window.flickrimg_measurement.unit === "cpm" && window.flickrimg_measurement.value > 100) {
+          imgElt.style.outline = "red inset thin";
+        }
+        var measurementDate = new Date(Date.parse(window.flickrimg_measurement.ts)).toDateString();
+        var text = window.flickrimg_measurement.value + " "+window.flickrimg_measurement.unit + " on "+measurementDate;
         measureElt.innerText=text;
         measureElt.style.display="inline";
+  	    warningElt.style.display="inline";
         console.log(window.flickrimg_measurement);
       }
     }
@@ -62,9 +69,12 @@ function locateAndTag(photoId) {
   imageLocate(photoId, getNearbyMeasurement);
 }
 
+var refreshTimeoutID;
+
 function flickrimg() {
+  clearTimeout(refreshTimeoutID);
   var xmlhttp = new XMLHttpRequest();
-  xmlhttp.open("GET", "/qotd/flickr", true);
+  xmlhttp.open("GET", "/flickr", true);
   xmlhttp.timeout = 2000;
   xmlhttp.onload = function(e) {
   if(xmlhttp.readyState === 4 && xmlhttp.status === 200) {
@@ -100,5 +110,5 @@ function flickrimg() {
     console.error(xmlhttp.statusText);
   };
   xmlhttp.send(null);
-  setTimeout(flickrimg, 20000);
+  refreshTimeoutID = setTimeout(flickrimg, 20000);
 };

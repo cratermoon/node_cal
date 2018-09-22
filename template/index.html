@@ -50,9 +50,12 @@
           <p><a href="https://github.com/cratermoon/node_cal">Code for this site/application</a></p> 
       </div>
       <div class="one-half column" style="margin-top: 16%">
+        <button onclick="flickrimg();">New Image</button>
         <div class="image-wrapper" id="image-wrapper-div">
           <figure id="image" class="u-max-full-width flickr-wrapper"></figure>
           <p id="scmeasurement" class="image-overlay" style="display: none;">42 cpm</p>
+      	  <p id="radiation-warning" style="display: none;">A yellow outline around the image indicates that
+            <a href="https://blog.safecast.org/">SafeCast</a> found measurable radiation within 100 meters. Mouse over the image to see the reported measurement and when it was measured. A red outline indicates a potentially unsafe level of radiation.</p>
         </div>
           <script>
             flickrimg();
