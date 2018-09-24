@@ -9,10 +9,10 @@ requires node.js, and flickrapi library
 
 ## Usage
 
-    node /server.js
+    node server.js
 or
 
-    node ./server.js
+    ./server.js
 
 ## Credits
 

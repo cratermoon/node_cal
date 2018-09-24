@@ -1,80 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+           <head>
 
-  <!-- Basic Page Needs
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <meta charset="utf-8">
-  <title>node.js example for Future Employers </title>
-  <meta name="description" content="">
-  <meta name="author" content="Steven E. Newton">
+           <!-- Basic Page Needs
+           –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+           <meta charset="utf-8">
+                         <title>node.js example for Future Employers </title>
+                         <meta name="description" content="">
+                                    <meta name="author" content="Steven E. Newton">
 
-  <!-- Mobile Specific Metas
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+                                            <!-- Mobile Specific Metas
+                                            –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+                                            <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- FONT
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
-<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+                                                    <!-- FONT
+                                                    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+                                                    <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+                                                            <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
 
-  <!-- CSS
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <link rel="stylesheet" href="css/normalize.css">
-  <link rel="stylesheet" href="css/skeleton.css">
+                                                                    <!-- CSS
+                                                                    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+                                                                    <link rel="stylesheet" href="css/normalize.css">
+                                                                            <link rel="stylesheet" href="css/skeleton.css">
 
-  <!-- Favicon
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <link rel="icon" type="image/ico" href="images/favicon.ico">
+                                                                                    <!-- Favicon
+                                                                                    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+                                                                                    <link rel="icon" type="image/ico" href="images/favicon.ico">
 
-  <!-- Javascript things
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <script type="text/javascript" src="js/sutils.js"> </script>
+                                                                                            <!-- Javascript things
+                                                                                            –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+                                                                                            <script type="text/javascript" src="js/sutils.js"> </script>
 
 
-</head>
-<body>
+                                                                                                    </head>
+                                                                                                    <body>
 
-  <!-- Primary Page Layout
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <div class="container">
-    <div class="row">
-      <div class="one-half column" style="margin-top: 16%">
-        <h4>Sample node.js Application for Future Employers</h4>
-        <p><a href="https://github.com/cratermoon/resume">resumé</a>!</p>
-          <p id="quip"></p>
-          <script>
-            quip();
-          </script>
-          <input class="button-primary" type="button" value="fresh quip" onclick="quip()">
-          <p><a href="https://github.com/cratermoon/node_cal">Code for this site/application</a></p> 
-      </div>
-      <div class="one-half column" style="margin-top: 16%">
-        <div id="user-setting" class="form-primary">
-          <label>Flickr Username</label>
-          <input class="text-primary"  id="flickr-username" type="text" value="" onchange="setUser();"/>
-        </div>
-        <div class="image-wrapper" id="image-wrapper-div" style="visibility : hidden;">
-          <figure id="image" class="u-max-full-width flickr-wrapper"></figure>
-          <p id="scmeasurement" class="image-overlay" style="visibility: hidden;">42 cpm</p>
-                    <button onclick="flickrimg();">New Image</button>
-      	  <p id="radiation-warning" style="visibility: hidden;">A yellow outline around the image indicates that
-            <a href="https://blog.safecast.org/">SafeCast</a> found measurable radiation within 100 meters. Mouse over the image to see the reported measurement and when it was measured. A red outline indicates a potentially unsafe level of radiation.</p>
+                                                                                                    <!-- Primary Page Layout
+                                                                                                    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+                                                                                                    <div class="container">
+                                                                                                                <div class="row">
+                                                                                                                            <div class="one-half column" style="margin-top: 16%">
+                                                                                                                                        <h4>Sample node.js Application for Future Employers</h4>
+                                                                                                                                            <p><a href="https://github.com/cratermoon/resume">resumé</a>!</p>
+                                                                                                                                                    <p id="quip"></p>
+                                                                                                                                                            <script>
+                                                                                                                                                            quip();
+</script>
+<input class="button-primary" type="button" value="fresh quip" onclick="quip()">
+                                       <p><a href="https://github.com/cratermoon/node_cal">Code for this site/application</a></p>
+                                               </div>
+                                               <div class="one-half column" style="margin-top: 16%">
+                                                           <div id="user-setting" class="form-primary">
+                                                                       <label>Flickr Username</label>
+                                                                       <input class="text-primary"  id="flickr-username" type="text" value="" onchange="setUser();"/>
+                                                                                   </div>
+                                                                                   <div class="image-wrapper" id="image-wrapper-div" style="visibility : hidden;">
+                                                                                               <figure id="image" class="u-max-full-width flickr-wrapper"></figure>
+                                                                                                           <p id="scmeasurement" class="image-overlay" style="visibility: hidden;">42 cpm</p>
+                                                                                                                       <button onclick="flickrimg();">New Image</button>
+                                                                                                                               <p id="radiation-warning" style="visibility: hidden;">A yellow outline around the image indicates that
+                                                                                                                                       <a href="https://blog.safecast.org/">SafeCast</a> found measurable radiation within 100 meters. Mouse over the image to see the reported measurement and when it was measured. A red outline indicates a potentially unsafe level of radiation.</p>
 
-        </div>
-     </div>
-    </div>
-      <div class="row">
-        <div class="eight columns"><hr></div>
-        <div class="four columns">
-          <footer>
-            <p class="u-pull-right">Designed with Skeleton. <a href="http://getskeleton.com/">Get Skeleton</a></p>
-          </footer>
-        </div>
-      </div>
-  </div>
+                                                                                                                                               </div>
+                                                                                                                                               </div>
+                                                                                                                                               </div>
+                                                                                                                                               <div class="row">
+                                                                                                                                                           <div class="eight columns"><hr></div>
+                                                                                                                                                                       <div class="four columns">
+                                                                                                                                                                                   <footer>
+                                                                                                                                                                                   <p class="u-pull-right">Designed with Skeleton. <a href="http://getskeleton.com/">Get Skeleton</a></p>
+                                                                                                                                                                                               </footer>
+                                                                                                                                                                                               </div>
+                                                                                                                                                                                               </div>
+                                                                                                                                                                                               </div>
 
-<!-- End Document
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-</body>
-</html>
+                                                                                                                                                                                               <!-- End Document
+                                                                                                                                                                                               –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+                                                                                                                                                                                               </body>
+                                                                                                                                                                                               </html>
