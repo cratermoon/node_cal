@@ -4,7 +4,7 @@ function mypath() {
 
 function quip() {
   var xmlhttp = new XMLHttpRequest();
-  xmlhttp.open("GET", mypath() + "/", true);
+  xmlhttp.open("GET", mypath() + "/qotd", true);
   xmlhttp.onload = function(e) {
     document.getElementById("quip").innerHTML= xmlhttp.responseText;
   }

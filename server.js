@@ -27,6 +27,11 @@ http.createServer(function(request, response) {
     var path = parsedUrl.pathname.toLowerCase();
     console.log("path is "+path);
     if (path == "/") {
+      response.writeHead(302, {
+        'Location': '/index.html'
+      });
+      response.end();
+    } else if (path == "/qotd") {
       var  clientIp = request.connection.remoteAddress;
       response.setHeader('Content-Type', 'text/plain');
       response.write(quips.randomQuip());

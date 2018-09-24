@@ -1,0 +1,25 @@
+{
+  "name": "flickrsafe",
+  "version": "0.0.3",
+  "description": "node.js exmaple",
+  "main": "./server.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/cratermoon/node_cal.git"
+  },
+  "author": "Steven E. Newton <steven.e.newton@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cratermoon/node_cal/issues"
+  },
+  "engines": {
+    "node": ">=v6.5.0"
+  },
+  "scripts": {
+    "test": "mocha --reporter spec"
+  },
+  "dependencies": {
+    "flickrapi": ">=0.0.1",
+    "mime": ">=2.3.1"
+  }
+}
