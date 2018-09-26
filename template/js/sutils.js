@@ -159,9 +159,18 @@ function setUser() {
 			console.log(xhr.responseText);
 			// flickrimg();
 			reloadImage(JSON.parse(xhr.responseText));
-			spinner.stop();
 			document.getElementById("image-wrapper-div").style.visibility = "visible";
 		}
+		spinner.stop();
 	}
+	xhr.onerror = function (e) {
+		spinner.stop();
+                console.error(xhr.statusText);
+        };
+        xhr.ontimeout = function (e) {
+		spinner.stop();
+                console.error(xhr.statusText);
+        };
+
 	xhr.send();
 };
