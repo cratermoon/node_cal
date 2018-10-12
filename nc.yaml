@@ -1,0 +1,24 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    run: nc
+  name: nc
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: nc
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        run: nc
+    spec:
+      containers:
+      - image: snewton/node-cal:v0.0.1
+        imagePullPolicy: Never
+        name: nc
+        ports:
+        - containerPort: 8090
+          hostPort: 8090
